@@ -3,4 +3,7 @@
 
 void sgenrand(unsigned long);
 
+tp_obj rand_random(TP);
+tp_obj rand_seed(TP);
+
 #endif /* !_RANDOM_H_ */

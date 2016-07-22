@@ -80,12 +80,12 @@ double genrand()
     /* return y; */ /* for integer generation */
 }
 
-static tp_obj rand_random(TP)
+tp_obj rand_random(TP)
 {
     return tp_number(genrand());
 }
 
-static tp_obj rand_seed(TP)
+tp_obj rand_seed(TP)
 {
     tp_obj arg = TP_DEFAULT(tp_None);
 
