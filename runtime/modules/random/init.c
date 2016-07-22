@@ -10,11 +10,13 @@
 
 static char *help =
 	"Random routines of pyr0, equivalent of the random module in cpython.\n"
+	"This module shouldn't be used for security purposes\n"
 	"\n"
 	"This exports:\n"
 	"\t* random.random() - random number between [0,1]";
 
 tp_obj rand_random(TP);
+tp_obj rand_seed(TP);
 
 void random_init(TP)
 {
@@ -24,6 +26,7 @@ void random_init(TP)
 	tp_obj rand_mod = tp_dict(tp);
 
 	/* methods */
+	tp_set(tp, rand_mod, tp_string("seed"), tp_fnc(tp, rand_seed));
 	tp_set(tp, rand_mod, tp_string("random"), tp_fnc(tp, rand_random));
 
 	/* special attributes */

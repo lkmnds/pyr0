@@ -80,7 +80,26 @@ double genrand()
     /* return y; */ /* for integer generation */
 }
 
-tp_obj rand_random(TP)
+static tp_obj rand_random(TP)
 {
     return tp_number(genrand());
+}
+
+static tp_obj rand_seed(TP)
+{
+    tp_obj arg = TP_DEFAULT(tp_None);
+
+    if (arg.type == TP_NONE){
+        u32 cmos_time = read_cmos();
+    	sgenrand(cmos_time);
+    } else if (arg.type == TP_NUMBER) {
+        sgenrand((unsigned long)arg.number.val);
+    } else if (arg.type == TP_STRING) {
+        unsigned long seed = (unsigned long)tp_hash(tp, arg);
+        sgenrand(seed);
+    } else {
+        tp_raise(tp_None,tp_printf(tp, "%s", "invalid argument for seed()"));
+    }
+
+    return (tp_None);
 }
