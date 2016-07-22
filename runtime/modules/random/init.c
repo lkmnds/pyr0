@@ -3,10 +3,16 @@
  * Author: Luna Mendes <lkmnds@gmail.com>
  */
 
+
+#include <kernel/pyr0.h>
+#include <kernel/cmos.h>
+
 #include <tinypy/tp.h>
 #include <tinypy/dict.h>
 #include <tinypy/string.h>
 #include <tinypy/misc.h>
+
+#include "random.h"
 
 static char *help =
 	"Random routines of pyr0, equivalent of the random module in cpython.\n"
